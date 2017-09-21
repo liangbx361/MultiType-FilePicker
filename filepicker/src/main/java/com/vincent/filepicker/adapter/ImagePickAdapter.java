@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,7 +15,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.bumptech.glide.GenericTransitionOptions;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.R;
 import com.vincent.filepicker.ToastUtil;
@@ -104,8 +107,10 @@ public class ImagePickAdapter extends BaseAdapter<ImageFile, ImagePickAdapter.Im
             }
             Glide.with(mContext)
                     .load(file.getPath())
-                    .centerCrop()
-                    .crossFade()
+                    .apply(new RequestOptions()
+                            .centerCrop()
+                    )
+                    .transition(new GenericTransitionOptions<Drawable>())
                     .into(holder.mIvThumbnail);
 
             if (file.isSelected()) {

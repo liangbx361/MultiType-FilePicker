@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -16,7 +17,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.GenericTransitionOptions;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vincent.filepicker.R;
 import com.vincent.filepicker.ToastUtil;
 import com.vincent.filepicker.Util;
@@ -107,8 +110,10 @@ public class VideoPickAdapter extends BaseAdapter<VideoFile, VideoPickAdapter.Vi
 
             Glide.with(mContext)
                     .load(file.getPath())
-                    .centerCrop()
-                    .crossFade()
+                    .apply(new RequestOptions()
+                            .centerCrop()
+                    )
+                    .transition(new GenericTransitionOptions<Drawable>())
                     .into(holder.mIvThumbnail);
 
             if (file.isSelected()) {

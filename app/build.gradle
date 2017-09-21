@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply from: "${gradleConfigUrl}/gradle/application.gradle"
 
 android {
     compileSdkVersion 25

@@ -156,7 +156,6 @@ public class ImageBrowserActivity extends BaseActivity {
             view.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             Glide.with(ImageBrowserActivity.this)
                     .load(mList.get(position).getPath())
-                    .crossFade()
                     .into(view);
             container.addView(view);
             return view;
